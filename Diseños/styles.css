@@ -82,7 +82,34 @@
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
+
+  /* Carrusel styles*/
+
+  .carousel-indicators [data-bs-target] {
+    position: relative;
+    width: 60px;
+    height: 6px;
+    border: none;
+    border-radius: 24px;
+  }
   
+  .carousel-indicators [data-bs-target] span {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #7952b3;
+    border-radius: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+ }
   /* Estilos de las secciones */
   
   section {

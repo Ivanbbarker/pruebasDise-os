@@ -1,12 +1,37 @@
-// Activate Carousel
-$("#myCarousel").carousel();
+const myCarousel = document.getElementById("carouselExampleIndicators");
+const carouselIndicators = myCarousel.querySelectorAll(
+  ".carousel-indicators button span"
+);
+let intervalID;
 
-// Enable Carousel Indicators
-$(".item").click(function(){
-  $("#myCarousel").carousel(1);
+const carousel = new bootstrap.Carousel(myCarousel);
+
+window.addEventListener("load", function () {
+  fillCarouselIndicator(1);
 });
 
-// Enable Carousel Controls
-$(".left").click(function(){
-  $("#myCarousel").carousel("prev");
+myCarousel.addEventListener("slide.bs.carousel", function (e) {
+  let index = e.to;
+  fillCarouselIndicator(++index);
 });
+
+function fillCarouselIndicator(index) {
+  let i = 0;
+  for (const carouselIndicator of carouselIndicators) {
+    carouselIndicator.style.width = 0;
+  }
+  clearInterval(intervalID);
+  carousel.pause();
+
+  intervalID = setInterval(function () {
+    i++;
+
+    myCarousel.querySelector(".carousel-indicators .active span").style.width =
+      i + "%";
+
+    if (i >= 100) {
+      // i = 0; -> just in case
+      carousel.next();
+    }
+  }, 50);
+}
